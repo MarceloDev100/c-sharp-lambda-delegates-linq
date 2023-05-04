@@ -1,5 +1,4 @@
 ﻿using Course.Entities;
-using System.Net;
 
 namespace Course
 {
@@ -9,29 +8,33 @@ namespace Course
         {
             List<Product> list = new List<Product>();
 
-            list.Add(new Product("TV", 900.00));
+            list.Add(new Product("Tv", 900.00));
             list.Add(new Product("Mouse", 50.00));
             list.Add(new Product("Tablet", 350.50));
             list.Add(new Product("HD Case", 80.90));
 
 
             /*
-               Write a program that, from a list of products,
-               increases the price of products by 10%
+              Write a program that, from a products list, 
+              generates a new list containing the names of products in uppercase.
              */
 
-            // Action
-            // - Represents a delegate.
-            // - It's a void method that receives zero or more arguments
+            // Func (System)
+            // - Represents a delegate
+            // - It's a method that returns a value and receives zero or more arguments.
 
 
-            /* Inline lambda expression  */
-            list.ForEach(p => { p.Price += p.Price * 0.1; });
+            List<string> result = list.Select(NameUpper).ToList();
 
-            foreach (Product p in list)
+            foreach (string p in result)
             {
                 Console.WriteLine(p);
             }
+        }
+
+        static string NameUpper(Product p)
+        {
+            return p.Name.ToUpper();
         }
     }
 }
