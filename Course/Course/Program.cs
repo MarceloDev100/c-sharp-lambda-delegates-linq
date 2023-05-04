@@ -1,4 +1,5 @@
 ﻿using Course.Entities;
+using System.Net;
 
 namespace Course
 {
@@ -15,31 +16,26 @@ namespace Course
 
 
             /*
-               Write a program that, from a list of products, 
-               removes from the list only those whose minimum price is 100.00
+               Write a program that, from a list of products,
+               increases the price of products by 10%
              */
 
+            // Action
+            // - Represents a delegate.
+            // - It's a void method that receives zero or more arguments
+
+            list.ForEach(UpdatePrice);
             
-            // Predicate
-            // - Predicate is a delegate (a reference to a function).
-            // - The function must return a boolean and receives an object as parameter.
-            // - The function may also be a lambda expression.
-
-
-            // Using lambda expression as predicate
-            // list.RemoveAll(p => p.Price >= 100.00);
-
-            list.RemoveAll(ProductTest);
-
             foreach(Product p in list)
             {
                 Console.WriteLine(p);
             }
+
         }
 
-        public static bool ProductTest(Product p)
+        static void UpdatePrice(Product p)
         {
-            return p.Price >= 100.0;
+            p.Price += p.Price * 0.1;
         }
     }
 }
