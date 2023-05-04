@@ -23,8 +23,9 @@ namespace Course
             // - Represents a delegate
             // - It's a method that returns a value and receives zero or more arguments.
 
+            Func<Product, string> func = NameUpper;
 
-            List<string> result = list.Select(NameUpper).ToList();
+            List<string> result = list.Select(func).ToList();
 
             foreach (string p in result)
             {
