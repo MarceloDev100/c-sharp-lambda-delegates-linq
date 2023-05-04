@@ -1,27 +1,45 @@
-﻿using Course.Services;
+﻿using Course.Entities;
 
 namespace Course
 {
-    delegate void BinaryNumericOperation(double n1, double n2);
-
     class Program
     {
         static void Main(string[] args)
         {
-            double a = 10;
-            double b = 12;
+            List<Product> list = new List<Product>();
 
-            // Multicast delegates
-            // - Hold references to more than one method.
-            // - (+=) Operator is used.
-            // - Invoke operation or simplified call executes all methods in a predefined order.
-            // - It makes more sense for void methods.
+            list.Add(new Product("TV", 900.00));
+            list.Add(new Product("Mouse", 50.00));
+            list.Add(new Product("Tablet", 350.50));
+            list.Add(new Product("HD Case", 80.90));
 
-            BinaryNumericOperation op = CalculationService.ShowSum;
-            op += CalculationService.ShowMax;
 
-            op(a, b);
-            op.Invoke(a, b);
+            /*
+               Write a program that, from a list of products, 
+               removes from the list only those whose minimum price is 100.00
+             */
+
+            
+            // Predicate
+            // - Predicate is a delegate (a reference to a function).
+            // - The function must return a boolean and receives an object as parameter.
+            // - The function may also be a lambda expression.
+
+
+            // Using lambda expression as predicate
+            // list.RemoveAll(p => p.Price >= 100.00);
+
+            list.RemoveAll(ProductTest);
+
+            foreach(Product p in list)
+            {
+                Console.WriteLine(p);
+            }
+        }
+
+        public static bool ProductTest(Product p)
+        {
+            return p.Price >= 100.0;
         }
     }
 }
