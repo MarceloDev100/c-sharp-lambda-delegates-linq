@@ -2,7 +2,7 @@
 
 namespace Course
 {
-    delegate double BinaryNumericOperation(double n1, double n2);
+    delegate void BinaryNumericOperation(double n1, double n2);
 
     class Program
     {
@@ -11,22 +11,17 @@ namespace Course
             double a = 10;
             double b = 12;
 
-            // Delegates
-            // - Reference type to one or more methods.
-            // - Methods signature must match with delegate.
+            // Multicast delegates
+            // - Hold references to more than one method.
+            // - (+=) Operator is used.
+            // - Invoke operation or simplified call executes all methods in a predefined order.
+            // - It makes more sense for void methods.
 
-            BinaryNumericOperation op1 = CalculationService.Sum;
-            double result1 = op1(a, b);
+            BinaryNumericOperation op = CalculationService.ShowSum;
+            op += CalculationService.ShowMax;
 
-            // Alternative sintax
-            BinaryNumericOperation op2 = new BinaryNumericOperation(CalculationService.Sum);
-            double result2 = op2(a, b);
-
-            double result3 = op2.Invoke(a, b);
-
-            Console.WriteLine(result1);
-            Console.WriteLine(result2);
-            Console.WriteLine(result3);
+            op(a, b);
+            op.Invoke(a, b);
         }
     }
 }
