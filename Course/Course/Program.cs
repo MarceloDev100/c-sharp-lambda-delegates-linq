@@ -24,10 +24,9 @@ namespace Course
             // - Represents a delegate.
             // - It's a void method that receives zero or more arguments
 
-           
-            /* Lambda expression to an action variable */
-            Action<Product> act = p => { p.Price += p.Price * 0.1; };
-            list.ForEach(act);
+
+            /* Inline lambda expression  */
+            list.ForEach(p => { p.Price += p.Price * 0.1; });
 
             foreach (Product p in list)
             {
